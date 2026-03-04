@@ -1,10 +1,14 @@
-import mongoose, { type InferSchemaType } from 'mongoose'
-
-const Schema = mongoose.Schema
+import mongoose, { Schema, type InferSchemaType } from 'mongoose'
 
 const facilitySchema = new Schema({
 	
 	facilityName: { type: String, required: true, unique: true },
+	facilityOwner: { 
+		type: Schema.Types.ObjectId, 
+		ref: 'User', 
+		required: true, 
+		index: true
+	},
 	facilityType: { type: String, required: true },
 	focusArea: { type: Array, required: true },
 	city: { type: String, required: true },

@@ -3,6 +3,8 @@ declare global {
 		export interface ProcessEnv {
 			MONGO_URI: string
 			PORT: string
+			ACCESS_TOKEN_SECRET: string
+			REFRESH_TOKEN_SECRET: string
 		}
 	}
 }
