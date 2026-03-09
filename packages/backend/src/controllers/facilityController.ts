@@ -17,8 +17,8 @@ const getFacilities = async (req: Request, res: Response) => {
 }
 
 
-const getFacilityWithID = async (req: Request<IParamFacilityID>, res: Response) => {
-	const { id } = req.params
+const getFacilityWithID = async (req: Request, res: Response) => {
+	const { id } = req.params as unknown as IParamFacilityID
 
 	if(!id){
 		return res.status(400).json({error: 'ID not sent'})
@@ -37,8 +37,8 @@ const getFacilityWithID = async (req: Request<IParamFacilityID>, res: Response) 
 }
 
 
-const saveFacility = async (req: Request<Facility>, res: Response) => {
-	const fac: Facility = req.body
+const saveFacility = async (req: Request<any, any, Facility>, res: Response) => {
+	const fac: Facility = req.body 
 	
 	try {
 		const facility = await facilityModel.create(fac)
@@ -49,8 +49,8 @@ const saveFacility = async (req: Request<Facility>, res: Response) => {
 }
 
 
-const deleteFacility = async (req: Request<IParamFacilityID>, res: Response) => {
-	const { id } = req.params
+const deleteFacility = async (req: Request, res: Response) => {
+	const { id } = req.params as unknown as IParamFacilityID
 	
 	if(!id){
 		return res.status(400).json({error: 'ID not sent'})
@@ -70,8 +70,8 @@ const deleteFacility = async (req: Request<IParamFacilityID>, res: Response) => 
 }
 
 
-const updateFacility = async (req: Request<IParamFacilityID, any, Facility>, res: Response) => {
-	const { id } = req.params
+const updateFacility = async (req: Request<any, any, Facility>, res: Response) => {
+	const { id } = req.params as unknown as IParamFacilityID
 	const facility = req.body
 
 	if(!id){

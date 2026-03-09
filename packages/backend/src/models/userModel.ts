@@ -1,7 +1,5 @@
-import mongoose, { type InferSchemaType } from 'mongoose'
-import { UserRole } from '../types/userTypes.js'
-
-const Schema = mongoose.Schema
+import mongoose, { Schema, type InferSchemaType } from 'mongoose'
+import { UserRole } from '@facility-management/shared'
 
 const userSchema = new Schema({
 	username: { 
@@ -29,6 +27,6 @@ const userSchema = new Schema({
 	// Field for last login later
 }, { timestamps: true })
 
-export type User = InferSchemaType<typeof userSchema>
+export type UserInfo = InferSchemaType<typeof userSchema>
 
-export default mongoose.model<User>('User', userSchema)
+export default mongoose.model<UserInfo>('User', userSchema)

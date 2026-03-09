@@ -1,6 +1,6 @@
 import { type NextFunction, type Request, type RequestHandler, type Response } from 'express'
 import jwt from 'jsonwebtoken'
-import { type UserRequestInfo, UserRole } from '../types/userTypes.js'
+import { type UserRequestInfo, UserRole } from '@facility-management/shared'
 import { type IParamUserID } from '../types/params.js'
 
 const authenticateUser: RequestHandler = (req, res, next) => {
@@ -27,12 +27,6 @@ const authenticateUser: RequestHandler = (req, res, next) => {
 
         if(id != null){
             if(id !== req.user.id && req.user.role !== UserRole.ADMIN) {
-                console.log(`forbidden from middleware`)
-                console.log(`${id} ${typeof id}`)
-                console.log(`${req.user.id} ${typeof req.user.id}`)
-                console.log(`${req.user.role} ${typeof req.user.role}`)
-                console.log(`${UserRole.ADMIN} ${typeof UserRole.ADMIN}`)
-                
                 return res.sendStatus(403)
             }
         }
