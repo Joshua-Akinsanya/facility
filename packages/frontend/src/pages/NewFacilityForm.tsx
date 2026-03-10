@@ -1,14 +1,18 @@
 // import { type FacilityForm } from "@facility-management/shared"
+import type { SubmitEvent } from "react"
 import TextInputField from "../components/TextInputField"
 
 export default function NewFacilityForm(){
-	const handleSubmit = () => {
+	const handleSubmit = (e: SubmitEvent<HTMLFormElement>) => {
+		e.preventDefault()
+		
 		window.alert('Form submitted')
 	}
 
 	// const fac: FacilityForm
 	return (
-		<div
+		<form
+			onSubmit={handleSubmit}
 			className="w-4/5 max-w-200 mx-auto space-y-10"
 		>
 			<div
@@ -35,9 +39,9 @@ export default function NewFacilityForm(){
 				<TextInputField name="contactPhone" placeholder="Phone Number" required />
 			</div>
 			<button
-				onClick={handleSubmit}
+				type="submit"
 				className="w-full py-2 px-4 bg-green-500 font-bold cursor-pointer"
 			>Submit</button>
-		</div>
+		</form>
 	)
 }

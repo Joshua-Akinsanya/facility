@@ -186,7 +186,7 @@ const userLogin = async (req: Request<any, any, UserLoginPayload>, res: Response
 
 			return res.status(200).json({ 
 				accessToken: accessToken, 
-				user: user 
+				user: tokenPayload
 			})
 			
 		} else {

@@ -1,25 +1,32 @@
 import AllFacilities from "../components/AllFacilities"
-import { UserRole, type UserInfo } from "@facility-management/shared"
+import { useAuth } from "../hooks/useAuthContext"
 
 export default function HomePage(){
-	const user: UserInfo = {
-		id: '1234567',
-		username: 'Joe Salazar',
-		email: 'j.salazar@domain',
-		role: UserRole.USER
+	const { authInfo, isLoggedIn } = useAuth()
+
+	const user = authInfo?.user
+
+	if(!authInfo || !user || !isLoggedIn){
+		return (<></>)
 	}
+
 	return (
 		<div 
 			className=""
 		>
-			<h1 className="text-3xl font-bold">Welcome, {user.username}!</h1>
-			<p>ID: #{user.id}</p>
-			<p>Email: {user.email}</p>
-			<p>Role: {user.role}</p>
-			{(user.createdAt != null)?(<p>Created at: {user.createdAt}</p>):"" }
-			{(user.updatedAt != null)?(<p>Created at: {user.updatedAt}</p>):"" }
+			{isLoggedIn
+				?(<>
+					<h1 className="text-3xl font-bold">Welcome, {user.username}!</h1>
+					<p>ID: {user.id}</p>
+					<p>Email: {user.email}</p>
+					<p>Role: {user.role}</p>
+					{(user.createdAt != null)?(<p>Created at: {user.createdAt}</p>):"" }
+					{(user.updatedAt != null)?(<p>Created at: {user.updatedAt}</p>):"" }
 
-			<AllFacilities />
+					<AllFacilities />
+				</>)
+				:""}
+		
 		</div>
 	)
 }

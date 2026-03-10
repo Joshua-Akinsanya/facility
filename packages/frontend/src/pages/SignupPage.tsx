@@ -12,6 +12,9 @@ export default function SignupPage(){
 		role: UserRole.USER
 	})
 
+	const [loading, setLoading] = useState(false)
+	const [error, setError] = useState("")
+
 	const updateUsername = (e: ChangeEvent<HTMLInputElement>) => {
 		setNewUser(prev => ({
 			...prev,
@@ -57,16 +60,25 @@ export default function SignupPage(){
 	const handleSignup = async (e: SubmitEvent<HTMLFormElement>) => {
 		e.preventDefault()
 
+		setLoading(true)
+		setError("")
+		
 		try {
 			const response = await 
 				axios.post("http://localhost:3000/api/v1/users/new", newUser)
 			
 			console.log(response.data)
+			setLoading(false)
+
 			alert('Success')
 			navigate('/login')
+		
 		} catch (error) {
+			
+			setLoading(false)
+			setError("An error occurred")
+
 			console.log(error)
-			alert('An error occurred')
 		}
 	}
 
@@ -121,5 +133,7 @@ export default function SignupPage(){
 				</button>
 			</div>
 		</div>
+		{loading && <p>Sending request...</p>}
+		{ (error.length > 0) && <p>An error occurred</p>}
 	</form>)
 }

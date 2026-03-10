@@ -12,6 +12,9 @@ export default function LoginPage(){
 		password: ""
 	})
 
+	const [loading, setLoading] = useState(false)
+	const [error, setError] = useState("")
+
 	const handleUsernameChange = (e: ChangeEvent<HTMLInputElement>) => {
 		setLoginPayload(prev => ({
 			...prev,
@@ -28,8 +31,15 @@ export default function LoginPage(){
 	const handleLogin = async (e: SubmitEvent<HTMLFormElement>) => {
 		e.preventDefault()
 
+		setError("")
+		setLoading(true)
+
 		if( await login(loginPayload) ){
+			setLoading(false)
 			navigate("/home")
+		} else {
+			setLoading(false)
+			setError("An error occurred")
 		}
 	}
 	
@@ -63,5 +73,7 @@ export default function LoginPage(){
 				</button>
 			</div>
 		</div>
+		{loading && <p>Sending request...</p>}
+		{ (error.length > 0) && <p>An error occurred</p>}
 	</form>)
 }

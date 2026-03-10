@@ -18,12 +18,10 @@ export default function AuthProvider({ children }: { children: ReactNode}) {
 			)
 			console.log(response.data)
 			setAuthInfo(response.data)
-			alert('Success')
 			return true
 
 		} catch(error) {
 			console.log(error)
-			alert('An error occured')
 			return false
 		}
 	}

@@ -9,6 +9,10 @@ const authenticateUser: RequestHandler = (req, res, next) => {
     if(authHeader == null) {
         return res.status(400).json({error: 'Missing token'})
     }
+    
+    if(authHeader.split(' ')[0] !== 'Bearer') {
+        return res.status(400).json({ error: 'Bad Header format' })
+    }
     const accessToken = authHeader.split(' ')[1]
     
     if(accessToken == null) {

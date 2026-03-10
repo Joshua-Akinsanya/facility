@@ -1,4 +1,4 @@
-import { type FacilityShortInfo } from "../../../shared/src/models/facility"
+import { type FacilityShortInfo } from "@facility-management/shared"
 
 interface FacilityCardProps {
 	facility: FacilityShortInfo
@@ -21,6 +21,7 @@ export default function FacilityCard({ facility }: FacilityCardProps){
 				{facility.focusArea.map(area => {
 					return (
 						<span
+							key={area}
 							className="inline-block py-1 px-2 bg-green-500/50 text-xs rounded-full"
 						>{area}
 						</span>
