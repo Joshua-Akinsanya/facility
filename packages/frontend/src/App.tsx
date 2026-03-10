@@ -8,27 +8,19 @@ import {
 	NotFound,
 	NewFacilityForm
 } from "./pages/pages.ts"
+
 import ProtectedRoutes from "./components/ProtectedRoutes.tsx"
-import RouteLink from "./components/RouteLink"
+import NavBar from "./components/NavBar.tsx"
 import AuthProvider from "./context/AuthContextProvider.tsx"
-import LogoutButton from "./components/LogoutButton.tsx"
 
 axios.defaults.headers.post["Content-Type"] = "application/json"
 
 function App() {
-	
 	return (
 		<div className="min-h-screen bg-neutral-800 text-neutral-100 flow-root">
 			<AuthProvider>
 				<Router>
-					<nav className="flex justify-center flex-wrap p-4 border-b-2 mb-8 border-neutral-500">
-						<RouteLink to="/login">Login</RouteLink>
-						<RouteLink to="/signup">Sign up</RouteLink>
-						<RouteLink to="/home">Home</RouteLink>
-						<RouteLink to="/allusers">Users</RouteLink>
-						<RouteLink to="/new-facility">New</RouteLink>
-						<LogoutButton />
-					</nav>
+					<NavBar />
 					<div className="w-9/10 sm:w-4/5 max-w-200 mx-auto mb-16">
 						<Routes>
 							<Route path="/signup" element={<SignupPage />} />

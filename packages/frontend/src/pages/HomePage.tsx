@@ -17,7 +17,9 @@ export default function HomePage(){
 			{isLoggedIn
 				?(<>
 					<h1 className="text-3xl font-bold">Welcome, {user.username}!</h1>
-					<p>ID: {user.id}</p>
+					<p 
+						className="text-sm"
+					>ID: {user.id}</p>
 					<p>Email: {user.email}</p>
 					<p>Role: {user.role}</p>
 					{(user.createdAt != null)?(<p>Created at: {user.createdAt}</p>):"" }

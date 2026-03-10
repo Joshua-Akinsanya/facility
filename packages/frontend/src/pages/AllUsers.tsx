@@ -58,7 +58,7 @@ export default function AllUsers(){
 		{allUsers.map(user => {
 			return <UserCard key={user.id} user={user} />
 		})}
-		{loading && <p>Sending request...</p>}
+		{loading && <p>Getting data...</p>}
 		{ (error.length > 0) && (<>
 			<p>{error}</p>
 			<RefetchButton
