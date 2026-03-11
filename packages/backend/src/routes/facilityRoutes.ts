@@ -17,7 +17,7 @@ router.get('/', authenticateUser, getFacilities)
 
 router.get('/:id', authenticateUser, allowAdminOnly, getFacilityWithID)
 
-router.post('/', authenticateUser, saveFacility)
+router.post('/new', authenticateUser, saveFacility)
 
 router.delete('/:id', authenticateUser, deleteFacility)
 

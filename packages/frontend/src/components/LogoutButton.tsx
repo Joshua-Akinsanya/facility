@@ -20,7 +20,7 @@ export default function LogoutButton({ className="" }: LogoutButtonProps) {
 	return (
 		<button
 			onClick={handleLogout}
-			className={`inline-block px-2 py-1 bg-gray-600 font-bold ${className}`}
+			className={`inline-block px-2 py-1 bg-gray-600 font-bold cursor-pointer ${className}`}
 		>
 			Logout	
 		</button>
